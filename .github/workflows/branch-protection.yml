@@ -7,10 +7,12 @@ name: Branch Protection (as code)
 # code: review them in PRs, re-apply them on demand, and keep every branch consistent.
 #
 # Branching model enforced here:   feature -> dev -> test -> main
-#   - No direct pushes to dev / test / main (changes must arrive via Pull Request).
-#   - Every PR must pass CI (the "PR Gate" status check) before it can merge.
+#   - No direct pushes to dev / test / main for the TEAM (changes via Pull Request).
+#   - The repo ADMIN is exempt (enforce_admins=false) and may push directly — used to
+#     bootstrap the repo while CI is not ready yet.
 #   - Every PR needs at least 1 approving review.
-#   - main is the strictest (admins included, linear history, conversations resolved).
+#   - CI gate (the "PR Gate" status check) is NOT required yet — re-enable once tests
+#     exist (see the "required_status_checks" note below).
 #
 # REQUIREMENT: the default GITHUB_TOKEN cannot edit branch protection.
 # Create a fine-grained or classic PAT with "Administration: write" (repo admin) on
