@@ -28,8 +28,5 @@ COPY --from=build /app/build ./build
 USER node
 EXPOSE 3000
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD wget -qO- http://localhost:3000/ >/dev/null 2>&1 || exit 1
-
 # -s = single-page-app mode (always serve index.html for client-side routes).
 CMD ["serve", "-s", "build", "-l", "3000"]
